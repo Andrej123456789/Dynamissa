@@ -1,6 +1,10 @@
 #include <iostream>
 
-#include <SDL2/SDL.h>
+#if defined _WIN32 || defined _WIN64
+    #include <SDL.h>
+#else
+    #include <SDL2/SDL.h>
+#endif
 
 #include "../include/header.hpp"
 
