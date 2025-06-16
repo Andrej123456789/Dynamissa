@@ -4,7 +4,7 @@ set(CMAKE_BUILD_TYPE Debug)
 
 project(dynamissa)
 
-file(GLOB SRC CONFIGURE_DEPENDS "include/*.hpp" "src/*.cpp")
+file(GLOB SRC CONFIGURE_DEPENDS "src/*.cpp" "imgui/*.cpp")
 
 find_package(SDL2 REQUIRED CONFIG)
 

@@ -1,12 +1,16 @@
 #include <iostream>
 
+#include "../imgui/imgui.h"
+#include "../imgui/imgui_impl_sdl2.h"
+#include "../imgui/imgui_impl_sdlrenderer2.h"
+
 #if defined _WIN32 || defined _WIN64
     #include <SDL.h>
 #else
     #include <SDL2/SDL.h>
 #endif
 
-#include "../include/header.hpp"
+#include "../include/dynamissa.hpp"
 
 int main(int argc, char* argv[]) 
 {
@@ -38,6 +42,16 @@ int main(int argc, char* argv[])
         return 1;
     }
 
+    // Initialize Dear ImGui
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+
+    ImGuiIO& io = ImGui::GetIO();
+    (void)io;
+    
+    ImGui_ImplSDL2_InitForSDLRenderer(window, renderer);
+    ImGui_ImplSDLRenderer2_Init(renderer);
+
     // Main loop flag
     int running = 1;
     SDL_Event event;
@@ -53,20 +67,30 @@ int main(int argc, char* argv[])
             }
         }
 
+        // Start ImGui
+        ImGui_ImplSDLRenderer2_NewFrame();
+        ImGui_ImplSDL2_NewFrame();
+        ImGui::NewFrame();
+
         // Clear screen (black)
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
 
-        // Set draw color to red
-        SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-
-        // Define a square
-        SDL_Rect redSquare = { 350, 250, 100, 100 };
-        SDL_RenderFillRect(renderer, &redSquare);
+        // Run ImGui
+        ImGui::SetNextWindowSize(ImVec2(50, 50));
+        Dynamissa();
 
         // Present on screen
+        ImGui::Render();
+        ImGui_ImplSDLRenderer2_RenderDrawData(ImGui::GetDrawData(), renderer);
+
         SDL_RenderPresent(renderer);
     }
+
+    // Close ImGui
+    ImGui_ImplSDLRenderer2_Shutdown();
+    ImGui_ImplSDL2_Shutdown();
+    ImGui::DestroyContext();
 
     // Cleanup
     SDL_DestroyRenderer(renderer);
