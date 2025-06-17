@@ -61,6 +61,7 @@ int main(int argc, char* argv[])
         // Handle events
         while (SDL_PollEvent(&event)) 
         {
+            ImGui_ImplSDL2_ProcessEvent(&event);
             if (event.type == SDL_QUIT) 
             {
                 running = 0;
@@ -76,9 +77,12 @@ int main(int argc, char* argv[])
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
 
-        // Run ImGui
-        ImGui::SetNextWindowSize(ImVec2(50, 50));
-        Dynamissa();
+        // Run Dynamissa
+        int x = 0;
+        int y = 0;
+
+        SDL_GetWindowSize(window, &x, &y);
+        Dynamissa(x, y, renderer);
 
         // Present on screen
         ImGui::Render();
