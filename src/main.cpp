@@ -1,3 +1,10 @@
+/**
+ * @author Andrej123456789 (Andrej Bartulin)
+ * PROJECT: Dynamissa
+ * LICENSE: MIT license
+ * DESCRIPTION: Program's entry point
+ */
+
 #include <iostream>
 
 #include "../imgui/imgui.h"
@@ -12,10 +19,16 @@
 
 #include "../include/dynamissa.hpp"
 
+/**
+ * @brief Entry point of the program
+ * 
+ * Initialize SDL2 and Dear ImGui and continue program's logic in `Dynamissa`
+ * function.
+ */
 int main(int argc, char* argv[]) 
 {
     // Initialize SDL
-    if (SDL_Init(SDL_INIT_VIDEO) != 0) 
+    if (SDL_Init(SDL_INIT_VIDEO) != 0)
     {
         std::cout << "SDL_Init Error: " << SDL_GetError() << "\n";
         return 1;
@@ -23,7 +36,7 @@ int main(int argc, char* argv[])
 
     // Create window
     SDL_Window* window = SDL_CreateWindow(NAME, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, 0);
-    if (!window) 
+    if (!window)
     {
         std::cout << "SDL_CreateWindow Error: " << SDL_GetError() << "\n";
         SDL_Quit();
@@ -33,7 +46,7 @@ int main(int argc, char* argv[])
 
     // Create renderer
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-    if (!renderer) 
+    if (!renderer)
     {
         std::cout << "SDL_CreateRenderer Error: " << SDL_GetError() << "\n";
         SDL_DestroyWindow(window);
@@ -56,13 +69,13 @@ int main(int argc, char* argv[])
     int running = 1;
     SDL_Event event;
 
-    while (running) 
+    while (running)
     {
         // Handle events
-        while (SDL_PollEvent(&event)) 
+        while (SDL_PollEvent(&event))
         {
             ImGui_ImplSDL2_ProcessEvent(&event);
-            if (event.type == SDL_QUIT) 
+            if (event.type == SDL_QUIT)
             {
                 running = 0;
             }
@@ -78,11 +91,7 @@ int main(int argc, char* argv[])
         SDL_RenderClear(renderer);
 
         // Run Dynamissa
-        int x = 0;
-        int y = 0;
-
-        SDL_GetWindowSize(window, &x, &y);
-        Dynamissa(x, y, renderer);
+        Dynamissa(window, renderer);
 
         // Present on screen
         ImGui::Render();

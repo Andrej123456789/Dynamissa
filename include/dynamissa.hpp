@@ -1,3 +1,10 @@
+/**
+ * @author Andrej123456789 (Andrej Bartulin)
+ * PROJECT: Dynamissa
+ * LICENSE: MIT license
+ * DESCRIPTION: Program's main header
+ */
+
 #pragma once
 
 #include "../imgui/imgui.h"
@@ -11,17 +18,11 @@
 #endif
 
 #define NAME "Dynamissa"
-#define MAX_OBJECTS 10
 
-struct Object
-{
-	int x;
-	int y;
-	int width;
-	int height;
-
-	int velocity;
-	int mass;
-};
-
-void Dynamissa(int width, int height, SDL_Renderer* renderer);
+/**
+ * @brief Program's main logic
+ * 
+ * @param window SDL2 window
+ * @param renderer SDL2 renderer
+ */
+void Dynamissa(SDL_Window* window, SDL_Renderer* renderer);

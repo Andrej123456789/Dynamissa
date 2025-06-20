@@ -1,37 +1,25 @@
+/**
+ * @author Andrej123456789 (Andrej Bartulin)
+ * PROJECT: Dynamissa
+ * LICENSE: MIT license
+ * DESCRIPTION: Program's main logic
+ */
+
 #include "../include/dynamissa.hpp"
-#include <stdio.h>
+#include "../include/ui.hpp"
+#include "../include/structures.hpp"
 
-struct Object* objects[MAX_OBJECTS];
-int obj_index = 0;
-
-void Dynamissa(int width, int height, SDL_Renderer* renderer)
+void Dynamissa(SDL_Window* window, SDL_Renderer* renderer)
 {
-    ImGui::SetNextWindowPos(ImVec2(0, 0));
-    ImGui::SetNextWindowSize(ImVec2(0.3 * width, height));
+    int width = 0;
+    int height = 0;
 
-    ImGui::Begin("Dynamissa editor");
+    Object* object = new Object{300, 100, 100, 100, 0.0, 0.0};
+    Simulation* simulation = new Simulation{0, 0.0};
 
-    if (ImGui::Button("Spawn", ImVec2(50, 20)) || (ImGui::IsItemFocused() && ImGui::IsKeyPressed(ImGuiKey_Enter)))
-    {
-        printf("toni\n");
+    SDL_GetWindowSize(window, &width, &height);
+    dynamissa_editor(0, 0, 0.3 * width, height, object, simulation);
 
-        objects[obj_index] = new Object{300, 100, 100, 100, 0, 10};
-        obj_index++;
-    }
-
-    for (int i = 0; i < MAX_OBJECTS; i++)
-    {
-        if (*(objects+i) == NULL)
-        {
-            break;
-        }
-
-        printf("mint\n");
-
-        SDL_Rect redSquare = { objects[i]->x, objects[i]->y, objects[i]->width, objects[i]->height};      // x, y, w, h
-        SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255); // Red color
-        SDL_RenderFillRect(renderer, &redSquare);         // Draw filled red square
-    }
-
-    ImGui::End();
+    delete object;
+    delete simulation;
 }
