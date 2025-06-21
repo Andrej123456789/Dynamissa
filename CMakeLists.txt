@@ -5,6 +5,7 @@ set(CMAKE_BUILD_TYPE Debug)
 project(dynamissa)
 
 file(GLOB SRC CONFIGURE_DEPENDS "src/*.cpp" "imgui/*.cpp")
+file(GLOB HEADER CONFIGURE_DEPENDS "include/*.h" "include/*.hpp")
 
 find_package(SDL2 REQUIRED CONFIG)
 
@@ -12,7 +13,7 @@ IF(WIN32)
     set(SDL2_DLL_PATH "${CMAKE_PREFIX_PATH}/lib/x64/SDL2.dll")
 ENDIF()
 
-add_executable(${PROJECT_NAME} ${SRC})
+add_executable(${PROJECT_NAME} ${SRC} ${HEADER})
 target_include_directories(${PROJECT_NAME} PRIVATE ${SDL2_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_NAME} PRIVATE ${SDL2_LIBRARIES})
 

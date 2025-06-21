@@ -11,7 +11,7 @@
 #include "../imgui/imgui_impl_sdl2.h"
 #include "../imgui/imgui_impl_sdlrenderer2.h"
 
-#include "../include/structures.hpp"
+struct Dynamissa;
 
 /**
  * @brief Code for `Dynamissa editor` window
@@ -20,7 +20,6 @@
  * @param y y position of the window
  * @param width width of the window
  * @param height height of the window
- * @param object struct containing object's information
- * @param simulation struct containing information about simulation
+ * @param dyn struct containing everything we might need
  */
-int dynamissa_editor(int x, int y, int width, int height, Object* object, Simulation* simulation);
+int dynamissa_editor(int x, int y, int width, int height, Dynamissa* dyn);

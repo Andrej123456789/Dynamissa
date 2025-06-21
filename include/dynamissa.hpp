@@ -19,10 +19,12 @@
 
 #define NAME "Dynamissa"
 
+struct Dynamissa;
+
 /**
  * @brief Program's main logic
  * 
  * @param window SDL2 window
  * @param renderer SDL2 renderer
  */
-void Dynamissa(SDL_Window* window, SDL_Renderer* renderer);
+void dynamissa(Dynamissa* dyn, SDL_Window* window, SDL_Renderer* renderer);

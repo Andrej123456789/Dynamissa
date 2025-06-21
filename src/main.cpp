@@ -18,23 +18,26 @@
 #endif
 
 #include "../include/dynamissa.hpp"
+#include "../include/structures.hpp"
 
 /**
  * @brief Entry point of the program
  * 
- * Initialize SDL2 and Dear ImGui and continue program's logic in `Dynamissa`
- * function.
+ * Initialize SDL2, Dear ImGui and all Dynamissa structures.
+ * Continue program's logic in `Dynamissa` function.
  */
 int main(int argc, char* argv[]) 
 {
-    // Initialize SDL
+    /* --------------------------------------------------------------------- */
+    /*                          SDL initialization                           */
+    /* --------------------------------------------------------------------- */
+
     if (SDL_Init(SDL_INIT_VIDEO) != 0)
     {
         std::cout << "SDL_Init Error: " << SDL_GetError() << "\n";
         return 1;
     }
 
-    // Create window
     SDL_Window* window = SDL_CreateWindow(NAME, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, 0);
     if (!window)
     {
@@ -44,7 +47,6 @@ int main(int argc, char* argv[])
         return 1;
     }
 
-    // Create renderer
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
     if (!renderer)
     {
@@ -55,7 +57,10 @@ int main(int argc, char* argv[])
         return 1;
     }
 
-    // Initialize Dear ImGui
+    /* --------------------------------------------------------------------- */
+    /*                      Dear ImGui initialization                        */
+    /* --------------------------------------------------------------------- */
+
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
 
@@ -65,7 +70,28 @@ int main(int argc, char* argv[])
     ImGui_ImplSDL2_InitForSDLRenderer(window, renderer);
     ImGui_ImplSDLRenderer2_Init(renderer);
 
-    // Main loop flag
+    /* --------------------------------------------------------------------- */
+    /*                      Dynamissa initialization                         */
+    /* --------------------------------------------------------------------- */
+
+    //Simulation* simulation = new Simulation{0};
+
+    Simulation simulation = {
+        0, // duration
+    };
+
+    UI ui = {
+        0,
+    };
+
+    Dynamissa* dyn = new Dynamissa{};
+    dyn->objects.push_back(Object{300, 100, 100, 100, 0.0, 0.0});
+    dyn->simulation = &simulation;
+    dyn->ui = &ui;
+
+    /* --------------------------------------------------------------------- */
+    /*                              Main loop                                */
+    /* --------------------------------------------------------------------- */
     int running = 1;
     SDL_Event event;
 
@@ -91,7 +117,7 @@ int main(int argc, char* argv[])
         SDL_RenderClear(renderer);
 
         // Run Dynamissa
-        Dynamissa(window, renderer);
+        dynamissa(dyn, window, renderer);
 
         // Present on screen
         ImGui::Render();
@@ -100,12 +126,16 @@ int main(int argc, char* argv[])
         SDL_RenderPresent(renderer);
     }
 
-    // Close ImGui
+    /* --------------------------------------------------------------------- */
+    /*                              Cleanup                                  */
+    /* --------------------------------------------------------------------- */
+
+    delete dyn;
+
     ImGui_ImplSDLRenderer2_Shutdown();
     ImGui_ImplSDL2_Shutdown();
     ImGui::DestroyContext();
 
-    // Cleanup
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
