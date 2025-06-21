@@ -74,20 +74,15 @@ int main(int argc, char* argv[])
     /*                      Dynamissa initialization                         */
     /* --------------------------------------------------------------------- */
 
-    //Simulation* simulation = new Simulation{0};
-
     Simulation simulation = {
         0, // duration
-    };
-
-    UI ui = {
-        0,
+        false, // run
     };
 
     Dynamissa* dyn = new Dynamissa{};
-    dyn->objects.push_back(Object{300, 100, 100, 100, 0.0, 0.0});
+    dyn->temp_object = { 300, 100, 100, 100, 0.0, 0.0 };
+
     dyn->simulation = &simulation;
-    dyn->ui = &ui;
 
     /* --------------------------------------------------------------------- */
     /*                              Main loop                                */

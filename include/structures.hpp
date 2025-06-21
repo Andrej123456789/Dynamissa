@@ -9,6 +9,16 @@
 
 #include <vector>
 
+ /**
+  * @brief Structure containing object information
+  *
+  * @param x
+  * @param y
+  * @param width
+  * @param height
+  * @param mass in kg
+  * @param velocity in m/s
+  */
 struct Object
 {
     int x;
@@ -20,14 +30,16 @@ struct Object
     double velocity;
 };
 
+/**
+ * @brief Structure containing simulation information
+ *
+ * @param duration duration of simulation in seconds
+ * @param run is simulation active
+ */
 struct Simulation
 {
     int duration;
-};
-
-struct UI
-{
-    size_t current_object;
+    bool run;
 };
 
 /**
@@ -39,6 +51,7 @@ struct UI
 struct Dynamissa
 {
     std::vector<Object> objects;
+    Object temp_object;
+
     Simulation* simulation;
-    UI* ui;
 };

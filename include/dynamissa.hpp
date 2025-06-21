@@ -7,19 +7,11 @@
 
 #pragma once
 
-#include "../imgui/imgui.h"
-#include "../imgui/imgui_impl_sdl2.h"
-#include "../imgui/imgui_impl_sdlrenderer2.h"
-
-#if defined _WIN32 || defined _WIN64
-	#include <SDL.h>
-#else
-	#include <SDL2/SDL.h>
-#endif
-
 #define NAME "Dynamissa"
 
 struct Dynamissa;
+struct SDL_Window;
+struct SDL_Renderer;
 
 /**
  * @brief Program's main logic
