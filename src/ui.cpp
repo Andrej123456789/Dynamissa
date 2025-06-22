@@ -56,7 +56,19 @@ void DynamissaEditor::dynamissa_editor()
 
 void DynamissaEditor::objects_ui()
 {
-    ImGui::Text("list of objects...");
+    for (size_t i = 0; i < dyn->objects.size(); i++)
+    {
+        ImGui::BulletText("Object %zd {X: %d, Y: %d, \nwidth: %d, height: %d, \nmass: %.2f kg, \nvelocity: %f m/s}", 
+            i,
+            dyn->objects[i].x,
+            dyn->objects[i].y,
+            dyn->objects[i].width,
+            dyn->objects[i].height,
+            dyn->objects[i].mass,
+            dyn->objects[i].velocity
+        );
+    }
+
 }
 
 void DynamissaEditor::object_creation_ui()
