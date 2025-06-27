@@ -12,6 +12,8 @@
 #endif
 
 #include "../include/dynamissa.hpp"
+#include "../include/renderer.hpp"
+#include "../include/simulation.hpp"
 #include "../include/structures.hpp"
 #include "../include/ui.hpp"
 
@@ -25,21 +27,6 @@ void dynamissa(Dynamissa* dyn, SDL_Window* window, SDL_Renderer* renderer)
     DynamissaEditor dynamissa_editor(0, 0, 0.3 * width, height, dyn);
     dynamissa_editor.dynamissa_editor();
 
-    for (size_t i = 0; i < dyn->objects.size(); i++)
-    {
-        SDL_Rect redSquare = { 
-            dyn->objects[i].x,
-            dyn->objects[i].y,
-            dyn->objects[i].width,
-            dyn->objects[i].height,
-        };      // x, y, w, h
-
-        SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255); // Red color
-        SDL_RenderFillRect(renderer, &redSquare);         // Draw filled red square
-    }
-
-    if (dyn->simulation->run)
-    {
-        printf("run");
-    }
+    dynamissa_renderer(dyn, window, renderer);
+    run_simulation(dyn);
 }

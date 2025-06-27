@@ -22,7 +22,7 @@ public:
 	 * @param y y position of the window
 	 * @param width width of the window
 	 * @param height height of the window
-	 * @param dyn struct containing everything we might need
+	 * @param dyn Dynamissa struct
 	 */
 	DynamissaEditor(int x, int y, int width, int height, Dynamissa* dyn);
 	~DynamissaEditor();
