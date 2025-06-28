@@ -7,6 +7,7 @@
 
 #pragma once
 
+#include <array>
 #include <vector>
 
  /**
@@ -18,6 +19,7 @@
   * @param height
   * @param mass in kg
   * @param velocity in m/s
+  * @param color represented in ImGui way (0.0 - 1.0), array of size 4
   */
 struct Object
 {
@@ -28,6 +30,8 @@ struct Object
 
     double mass;
     double velocity;
+
+    std::array<float, 4> color;
 };
 
 /**

@@ -26,7 +26,15 @@ void dynamissa_renderer(Dynamissa* dyn, SDL_Window* window, SDL_Renderer* render
             object.height,
         }; // x, y, w, h
 
-        SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);   // Red color
-        SDL_RenderFillRect(renderer, &square);              // Draw filled red square
+        SDL_SetRenderDrawColor
+        (
+            renderer, 
+            (uint8_t)(object.color[0] * 255),
+            (uint8_t)(object.color[1] * 255),
+            (uint8_t)(object.color[2] * 255),
+            (uint8_t)(object.color[3] * 255)
+        );
+
+        SDL_RenderFillRect(renderer, &square);
     }
 }

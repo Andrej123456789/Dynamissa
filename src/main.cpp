@@ -5,6 +5,7 @@
  * DESCRIPTION: Program's entry point
  */
 
+#include <array>
 #include <iostream>
 
 #include "../imgui/imgui.h"
@@ -80,7 +81,8 @@ int main(int argc, char* argv[])
     };
 
     Dynamissa* dyn = new Dynamissa{};
-    dyn->temp_object = { 300, 100, 100, 100, 0.0, 0.0 };
+    std::array<float, 4> default_color = { 1.0f, 0.0f, 0.0f, 1.0f }; // red
+    dyn->temp_object = { 300, 100, 100, 100, 0.0, 0.0, default_color };
 
     dyn->simulation = &simulation;
 
