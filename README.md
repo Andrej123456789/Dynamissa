@@ -1,8 +1,14 @@
 # Dynamissa
 Fully fledged Newtonian mechanics simulator
 
+## About Dynamissa
+The goal is to create as complete as possible simulator of Newtonian mechanics.
+The plan is not to create a basic gravity only simulator, but create an emulator that supports whole suite of mechanics phenomena described by [Newton's 3 laws of motion](https://en.wikipedia.org/wiki/Newton%27s_laws_of_motion) to mainly be used in education environment.
+
+Dynamissa is written in C++ using [SDL2](https://www.libsdl.org/) and [Dear ImGui](https://github.com/ocornut/imgui) libraries.
+
 ## Build instructions
-### Required software:
+### Software installation
 - C++ compiler
     - on Windows install Visual Studio 2022 with ```Desktop development with C++``` component
     - on other platforms install GCC or Clang (they are compatible) and C & C++ headers (`base-devel`, `build-essentials` or `build-base`)
@@ -29,7 +35,7 @@ Fully fledged Newtonian mechanics simulator
     - #### Other platforms
         1. Install SDL2 using package manager.
 
-### Compile the project
+### Compilation
 #### Windows
 1. Create `build` folder.
 2. Inside it, run `cmake -DCMAKE_PREFIX_PATH="path_to_extracted_folder" ..`
