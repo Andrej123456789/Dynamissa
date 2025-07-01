@@ -12,12 +12,29 @@ struct SDL_Window;
 struct SDL_Renderer;
 
 /**
- * @brief Entry point of Dynamissa's renderer
- *
- * Render all objects to the screen.
- * 
- * @param dyn Dynamissa struct
- * @param window SDL2 window
- * @param renderer SDL2 renderer
+ * @brief Class for renderer
  */
-void dynamissa_renderer(Dynamissa* dyn, SDL_Window* window, SDL_Renderer* renderer);
+class Renderer
+{
+public:
+	/**
+	 * @brief Initialize the class
+	 *
+	 * @param dyn Dynamissa struct
+	 * @param window SDL2 window
+	 * @param renderer SDL2 renderer
+	 */
+	Renderer(Dynamissa* dyn, SDL_Window* window, SDL_Renderer* renderer);
+	~Renderer();
+
+public:
+	/**
+	 * Render all objects to the screen.
+	 */
+	void dynamissa_renderer();
+
+private:
+	Dynamissa* dyn;
+	SDL_Window* window;
+	SDL_Renderer* renderer;
+};

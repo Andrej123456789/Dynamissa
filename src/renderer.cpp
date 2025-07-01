@@ -14,7 +14,19 @@
 #include "../include/renderer.hpp"
 #include "../include/structures.hpp"
 
-void dynamissa_renderer(Dynamissa* dyn, SDL_Window* window, SDL_Renderer* renderer)
+Renderer::Renderer(Dynamissa* dyn, SDL_Window* window, SDL_Renderer* renderer)
+{
+    this->dyn = dyn;
+    this->window = window;
+    this->renderer = renderer;
+}
+
+Renderer::~Renderer()
+{
+
+}
+
+void Renderer::dynamissa_renderer()
 {
     for (auto& object: dyn->objects)
     {

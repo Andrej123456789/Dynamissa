@@ -27,6 +27,9 @@ void dynamissa(Dynamissa* dyn, SDL_Window* window, SDL_Renderer* renderer)
     DynamissaEditor dynamissa_editor(0, 0, 0.3 * width, height, dyn);
     dynamissa_editor.dynamissa_editor();
 
-    dynamissa_renderer(dyn, window, renderer);
-    run_simulation(dyn);
+    Renderer renderer_class = Renderer(dyn, window, renderer);
+    renderer_class.dynamissa_renderer();
+
+    SimulationEngine simulation_engine(dyn, width, height);
+    simulation_engine.run_simulation();
 }

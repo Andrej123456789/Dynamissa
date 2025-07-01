@@ -10,10 +10,29 @@
 struct Dynamissa;
 
 /**
- * @brief Entry point for simulation
- *
- * Run the simulation, move objects.
- * 
- * @param dyn Dynamissa struct
+ * @brief Class for simulation engine
  */
-void run_simulation(Dynamissa* dyn);
+class SimulationEngine
+{
+public:
+	/**
+	 * @brief Initialize the class
+	 *
+	 * @param dyn Dynamissa struct
+	 * @param window_width SDL2 window width
+	 * @param window_height SDL2 window height
+	 */
+	SimulationEngine(Dynamissa* dyn, int window_width, int window_height);
+	~SimulationEngine();
+
+public:
+	/**
+	 * Run the simulation, move objects.
+	 */
+	void run_simulation();
+
+private:
+	Dynamissa* dyn;
+	int window_width;
+	int window_height;
+};
