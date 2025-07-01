@@ -38,3 +38,9 @@ void SimulationEngine::run_simulation()
 		}
 	}
 }
+
+void SimulationEngine::update_window(int window_width, int window_height)
+{
+	this->window_width = window_width;
+	this->window_height = window_height;
+}

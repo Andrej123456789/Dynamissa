@@ -19,6 +19,8 @@
 #endif
 
 #include "../include/dynamissa.hpp"
+#include "../include/renderer.hpp"
+#include "../include/simulation.hpp"
 #include "../include/structures.hpp"
 
 /**
@@ -72,19 +74,27 @@ int main(int argc, char* argv[])
     ImGui_ImplSDLRenderer2_Init(renderer);
 
     /* --------------------------------------------------------------------- */
-    /*                      Dynamissa initialization                         */
+    /*                    Dynamissa structs initialization                   */
     /* --------------------------------------------------------------------- */
 
-    Simulation simulation = {
+    SimulationData simulation_data = {
         0, // duration
         false, // run
     };
 
     Dynamissa* dyn = new Dynamissa{};
+
     std::array<float, 4> default_color = { 1.0f, 0.0f, 0.0f, 1.0f }; // red
     dyn->temp_object = { 300, 100, 100, 100, 0.0, 0.0, default_color };
 
-    dyn->simulation = &simulation;
+    dyn->simulation = &simulation_data;
+
+    /* --------------------------------------------------------------------- */
+    /*                    Dynamissa class initialization                     */
+    /* --------------------------------------------------------------------- */
+
+    Renderer renderer_class = Renderer(dyn, window, renderer);
+    SimulationEngine simulation_engine(dyn, 0, 0);
 
     /* --------------------------------------------------------------------- */
     /*                              Main loop                                */
@@ -114,7 +124,7 @@ int main(int argc, char* argv[])
         SDL_RenderClear(renderer);
 
         // Run Dynamissa
-        dynamissa(dyn, window, renderer);
+        dynamissa(dyn, &renderer_class, &simulation_engine, window, renderer);
 
         // Present on screen
         ImGui::Render();

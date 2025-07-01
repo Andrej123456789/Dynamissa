@@ -29,7 +29,7 @@ public:
 
 public:
 	/**
-	 * Render all objects to the screen.
+	 * @brief Render all objects to the screen.
 	 */
 	void dynamissa_renderer();
 

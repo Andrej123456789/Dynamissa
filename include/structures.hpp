@@ -40,7 +40,7 @@ struct Object
  * @param duration duration of simulation in seconds
  * @param run is simulation active
  */
-struct Simulation
+struct SimulationData
 {
     int duration;
     bool run;
@@ -57,5 +57,5 @@ struct Dynamissa
     std::vector<Object> objects;
     Object temp_object;
 
-    Simulation* simulation;
+    SimulationData* simulation;
 };

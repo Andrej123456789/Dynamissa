@@ -6,7 +6,7 @@
  */
 
 #if defined _WIN32 || defined _WIN64
-    #include <SDL.h>
+#include <SDL.h>
 #else
     #include <SDL2/SDL.h>
 #endif
@@ -17,7 +17,9 @@
 #include "../include/structures.hpp"
 #include "../include/ui.hpp"
 
-void dynamissa(Dynamissa* dyn, SDL_Window* window, SDL_Renderer* renderer)
+void dynamissa(Dynamissa* dyn, Renderer* renderer_class,
+               SimulationEngine* simulation_engine,
+               SDL_Window* window, SDL_Renderer* renderer)
 {
     int width = 0;
     int height = 0;
@@ -27,9 +29,8 @@ void dynamissa(Dynamissa* dyn, SDL_Window* window, SDL_Renderer* renderer)
     DynamissaEditor dynamissa_editor(0, 0, 0.3 * width, height, dyn);
     dynamissa_editor.dynamissa_editor();
 
-    Renderer renderer_class = Renderer(dyn, window, renderer);
-    renderer_class.dynamissa_renderer();
+    renderer_class->dynamissa_renderer();
 
-    SimulationEngine simulation_engine(dyn, width, height);
-    simulation_engine.run_simulation();
+    simulation_engine->update_window(width, height);
+    simulation_engine->run_simulation();
 }

@@ -27,9 +27,18 @@ public:
 
 public:
 	/**
-	 * Run the simulation, move objects.
+	 * @brief Run the simulation, move objects.
 	 */
 	void run_simulation();
+
+
+	/**
+	 * @brief Update the SDL2 window size
+	 *
+	 * @param window_width SDL2 window width
+	 * @param window_height SDL2 window height
+	 */
+	void update_window(int window_width, int window_height);
 
 private:
 	Dynamissa* dyn;
