@@ -90,7 +90,7 @@ int main(int argc, char* argv[])
     dyn->simulation = &simulation_data;
 
     /* --------------------------------------------------------------------- */
-    /*                    Dynamissa class initialization                     */
+    /*                    Dynamissa classes initialization                   */
     /* --------------------------------------------------------------------- */
 
     Renderer renderer_class = Renderer(dyn, window, renderer);
@@ -123,8 +123,14 @@ int main(int argc, char* argv[])
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
 
+        // Get window size
+        int width = 0;
+        int height = 0;
+
+        SDL_GetWindowSize(window, &width, &height);
+
         // Run Dynamissa
-        dynamissa(dyn, &renderer_class, &simulation_engine, window, renderer);
+        dynamissa(width, height, dyn, &renderer_class, &simulation_engine);
 
         // Present on screen
         ImGui::Render();

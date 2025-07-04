@@ -12,18 +12,15 @@
 struct Dynamissa;
 struct Renderer;
 struct SimulationEngine;
-struct SDL_Window;
-struct SDL_Renderer;
 
 /**
  * @brief Program's main logic
  * 
+ * @param width width of the SDL2 window
+ * @param height height of the SDL2 window
  * @param dyn Dynamissa struct
  * @param renderer_class Renderer class
  * @param SimulationEngine SimulationEngine class
- * @param window SDL2 window
- * @param renderer SDL2 renderer
  */
-void dynamissa(Dynamissa* dyn, Renderer* renderer_class,
-    SimulationEngine* simulation_engine,
-    SDL_Window* window, SDL_Renderer* renderer);
+void dynamissa(int width, int height, Dynamissa* dyn, Renderer* renderer_class,
+               SimulationEngine* simulation_engine);
