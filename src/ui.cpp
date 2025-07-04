@@ -9,6 +9,8 @@
 #include "../imgui/imgui_impl_sdl2.h"
 #include "../imgui/imgui_impl_sdlrenderer2.h"
 
+#include <stdint.h>
+
 #include "../include/structures.hpp"
 #include "../include/ui.hpp"
 
