@@ -41,7 +41,9 @@ int main(int argc, char* argv[])
         return 1;
     }
 
-    SDL_Window* window = SDL_CreateWindow(NAME, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, 0);
+    SDL_Window* window = SDL_CreateWindow(NAME, SDL_WINDOWPOS_CENTERED,
+                                          SDL_WINDOWPOS_CENTERED, 
+                                          800, 600, SDL_WINDOW_RESIZABLE);
     if (!window)
     {
         std::cout << "SDL_CreateWindow Error: " << SDL_GetError() << "\n";
