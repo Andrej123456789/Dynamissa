@@ -3,7 +3,7 @@ Fully fledged Newtonian mechanics simulator
 
 ## About Dynamissa
 The goal is to create as complete as possible simulator of Newtonian mechanics with emphasis on use in an educational environment.
-The plan is not to create a basic, gravity only simulator, but create an emulator that supports whole suite of mechanics phenomena described by [Newton's 3 laws of motion](https://en.wikipedia.org/wiki/Newton%27s_laws_of_motion).
+The plan is not to create a basic, gravity only simulator, but to create an emulator that supports whole suite of mechanics phenomena described by [Newton's 3 laws of motion](https://en.wikipedia.org/wiki/Newton%27s_laws_of_motion).
 
 Dynamissa is written in C++ using [SDL2](https://www.libsdl.org/) and [Dear ImGui](https://github.com/ocornut/imgui) libraries.
 
