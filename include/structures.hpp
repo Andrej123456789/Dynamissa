@@ -42,7 +42,7 @@ struct Object
  */
 struct SimulationData
 {
-    int duration;
+    double duration;
     bool run;
 };
 
