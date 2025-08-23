@@ -4,6 +4,8 @@ set(CMAKE_BUILD_TYPE Debug)
 
 project(dynamissa)
 
+set(CMAKE_CXX_STANDARD 20)
+
 file(GLOB SRC CONFIGURE_DEPENDS "src/*.cpp" "imgui/*.cpp")
 file(GLOB HEADER CONFIGURE_DEPENDS "include/*.h" "include/*.hpp")
 
