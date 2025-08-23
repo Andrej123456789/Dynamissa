@@ -127,9 +127,15 @@ void DynamissaEditor::forces_ui()
 
 void DynamissaEditor::simulation_ui()
 {
-    ImGui::InputDouble("duration", &dyn->simulation->duration, 0.1);
+    double duration = dyn->simulation->duration.count();
+    if (ImGui::InputDouble("duration", &duration, 0.1))
+    {
+        dyn->simulation->duration = std::chrono::duration<double>(duration);
+    }
+
     if (ImGui::Button("Run", ImVec2(50, 20)) || (ImGui::IsItemFocused() && ImGui::IsKeyPressed(ImGuiKey_Enter)))
     {
+        dyn->simulation->start = std::chrono::steady_clock::now();
         dyn->simulation->run = true;
     }
 

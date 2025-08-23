@@ -6,6 +6,7 @@
  */
 
 #include <array>
+#include <chrono>
 #include <iostream>
 
 #include "../imgui/imgui.h"
@@ -80,7 +81,8 @@ int main(int argc, char* argv[])
     /* --------------------------------------------------------------------- */
 
     SimulationData simulation_data = {
-        0, // duration
+        std::chrono::steady_clock::now(), // start
+        std::chrono::duration<double>(1.0), // duration
         false, // run
     };
 

@@ -27,7 +27,7 @@ public:
 
 public:
 	/**
-	 * @brief Run the simulation, move objects.
+	 * @brief Run the simulation, move objects
 	 */
 	void run_simulation();
 

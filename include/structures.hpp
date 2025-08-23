@@ -8,6 +8,7 @@
 #pragma once
 
 #include <array>
+#include <chrono>
 #include <vector>
 
  /**
@@ -37,12 +38,14 @@ struct Object
 /**
  * @brief Structure containing simulation information
  *
+ * @param start time when simulation started
  * @param duration duration of simulation in seconds
  * @param run is simulation active
  */
 struct SimulationData
 {
-    double duration;
+    std::chrono::steady_clock::time_point start;
+    std::chrono::duration<double> duration;
     bool run;
 };
 

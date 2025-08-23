@@ -8,6 +8,8 @@
 #include "../include/simulation.hpp"
 #include "../include/structures.hpp"
 
+#include <chrono>
+
 SimulationEngine::SimulationEngine(Dynamissa* dyn, int window_width, int window_height)
 {
 	this->dyn = dyn;
@@ -22,8 +24,12 @@ SimulationEngine::~SimulationEngine()
 
 void SimulationEngine::run_simulation()
 {
-	if (!dyn->simulation->run)
+	if (!dyn->simulation->run) return;
+
+	auto now = std::chrono::steady_clock::now();
+	if (now - dyn->simulation->start >= dyn->simulation->duration)
 	{
+		dyn->simulation->run = false;
 		return;
 	}
 
