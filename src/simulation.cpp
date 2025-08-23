@@ -31,9 +31,19 @@ void SimulationEngine::run_simulation()
 	{
 		object.x += object.velocity;
 
-		// Window bounds
-		if (object.x <= 0 || object.x + object.width >= window_width)
+		object.x += object.velocity;
+
+		// Left bound
+		if (object.x < 0)
 		{
+			object.x = 0; // clamp back inside
+			object.velocity = -object.velocity;
+		}
+
+		// Right bound
+		else if (object.x + object.width > window_width)
+		{
+			object.x = window_width - object.width; // clamp back inside
 			object.velocity = -object.velocity;
 		}
 	}
