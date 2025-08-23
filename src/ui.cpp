@@ -9,6 +9,9 @@
 #include "../imgui/imgui_impl_sdl2.h"
 #include "../imgui/imgui_impl_sdlrenderer2.h"
 
+#include <format>
+#include <string>
+
 #include <stdint.h>
 
 #include "../include/structures.hpp"
@@ -60,9 +63,9 @@ void DynamissaEditor::objects_ui()
 {
     for (size_t i = 0; i < dyn->objects.size(); i++)
     {
-        ImGui::BulletText("Object %zd {X: %d, Y: %d, \nwidth: %d, height: %d, \
-                          \nmass: %.2f kg, \nvelocity: %f m/s, \
-                          \ncolor: (%d, %d, %d, %d)}",
+        std::string label = std::format("* Object {} {{X: {}, Y: {}, \nwidth: {}, height: {}, \
+            \nmass: {:.2f} kg, \nvelocity: {:f} m/s, \
+            \ncolor: ({}, {}, {}, {})}}",
             i,
             dyn->objects[i].x,
             dyn->objects[i].y,
@@ -75,8 +78,30 @@ void DynamissaEditor::objects_ui()
             (uint8_t)(dyn->objects[i].color[2] * 255),
             (uint8_t)(dyn->objects[i].color[3] * 255)
         );
-    }
 
+        ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0)); // normal
+        ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(1, 1, 1, 0.1f)); // slight highlight on hover
+        ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4(1, 1, 1, 0.2f)); // slight highlight on click
+        ImGui::PushStyleVar(ImGuiStyleVar_FrameBorderSize, 0.0f); // no border
+
+        if (ImGui::Button(label.c_str()))
+        {
+            dyn->objects.erase(dyn->objects.begin() + i);
+
+            ImGui::PopStyleVar();
+            ImGui::PopStyleColor(3);
+
+            continue; // don't increment because other objects shifted to the left
+        }
+
+        if (ImGui::IsItemHovered())
+        {
+            ImGui::SetTooltip("Click to destroy an object");
+        }
+
+        ImGui::PopStyleVar();
+        ImGui::PopStyleColor(3);
+    }
 }
 
 void DynamissaEditor::object_creation_ui()
