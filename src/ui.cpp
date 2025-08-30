@@ -110,8 +110,8 @@ void DynamissaEditor::object_creation_ui()
     ImGui::InputInt("Y position", &dyn->temp_object.y);
     ImGui::InputInt("width", &dyn->temp_object.width);
     ImGui::InputInt("height", &dyn->temp_object.height);
-    ImGui::InputDouble("mass", &dyn->temp_object.mass, 0.1);
-    ImGui::InputDouble("velocity", &dyn->temp_object.velocity, 0.1);
+    ImGui::InputDouble("mass (kg)", &dyn->temp_object.mass, 0.1);
+    ImGui::InputDouble("velocity (m/s)", &dyn->temp_object.velocity, 0.1);
     ImGui::ColorEdit4("color", dyn->temp_object.color.data());
 
     if (ImGui::Button("Spawn", ImVec2(50, 20)) || (ImGui::IsItemFocused() && ImGui::IsKeyPressed(ImGuiKey_Enter)))
