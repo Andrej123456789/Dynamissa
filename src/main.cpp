@@ -23,6 +23,10 @@
 #include "../include/renderer.hpp"
 #include "../include/simulation.hpp"
 #include "../include/structures.hpp"
+#include "../include/ui.hpp"
+
+#define WIDTH 800
+#define HEIGHT 600
 
 /**
  * @brief Entry point of the program
@@ -44,7 +48,7 @@ int main(int argc, char* argv[])
 
     SDL_Window* window = SDL_CreateWindow(NAME, SDL_WINDOWPOS_CENTERED,
                                           SDL_WINDOWPOS_CENTERED, 
-                                          800, 600, SDL_WINDOW_RESIZABLE);
+                                          WIDTH, HEIGHT, SDL_WINDOW_RESIZABLE);
     if (!window)
     {
         std::cout << "SDL_CreateWindow Error: " << SDL_GetError() << "\n";
@@ -97,8 +101,9 @@ int main(int argc, char* argv[])
     /*                    Dynamissa classes initialization                   */
     /* --------------------------------------------------------------------- */
 
+    DynamissaEditor dyn_editor = DynamissaEditor(0, 0, 0.33 * WIDTH, HEIGHT, dyn);
     Renderer renderer_class = Renderer(dyn, window, renderer);
-    SimulationEngine simulation_engine(dyn, 0, 0);
+    SimulationEngine simulation_engine = SimulationEngine(dyn, 0, 0);
 
     /* --------------------------------------------------------------------- */
     /*                              Main loop                                */
@@ -134,7 +139,7 @@ int main(int argc, char* argv[])
         SDL_GetWindowSize(window, &width, &height);
 
         // Run Dynamissa
-        dynamissa(width, height, dyn, &renderer_class, &simulation_engine);
+        dynamissa(width, height, dyn, &dyn_editor, &renderer_class, &simulation_engine);
 
         // Present on screen
         ImGui::Render();

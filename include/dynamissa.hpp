@@ -10,6 +10,7 @@
 #define NAME "Dynamissa"
 
 struct Dynamissa;
+struct DynamissaEditor;
 struct Renderer;
 struct SimulationEngine;
 
@@ -22,5 +23,5 @@ struct SimulationEngine;
  * @param renderer_class Renderer class
  * @param SimulationEngine SimulationEngine class
  */
-void dynamissa(int width, int height, Dynamissa* dyn, Renderer* renderer_class,
-               SimulationEngine* simulation_engine);
+void dynamissa(int width, int height, Dynamissa* dyn, DynamissaEditor* dyn_editor,
+               Renderer* renderer_class, SimulationEngine* simulation_engine);

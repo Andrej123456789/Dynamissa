@@ -33,8 +33,8 @@ DynamissaEditor::~DynamissaEditor()
 
 void DynamissaEditor::dynamissa_editor()
 {
-    ImGui::SetNextWindowPos(ImVec2(x, y));
-    ImGui::SetNextWindowSize(ImVec2(width, height));
+    ImGui::SetNextWindowPos(ImVec2(x, y), ImGuiCond_FirstUseEver);
+    ImGui::SetNextWindowSize(ImVec2(width, height), ImGuiCond_FirstUseEver);
 
     ImGui::Begin("Dynamissa editor", nullptr);
 

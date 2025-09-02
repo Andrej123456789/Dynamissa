@@ -11,11 +11,10 @@
 #include "../include/structures.hpp"
 #include "../include/ui.hpp"
 
-void dynamissa(int width, int height, Dynamissa* dyn, Renderer* renderer_class,
-               SimulationEngine* simulation_engine)
+void dynamissa(int width, int height, Dynamissa* dyn, DynamissaEditor* dyn_editor,
+               Renderer* renderer_class, SimulationEngine* simulation_engine)
 {
-    DynamissaEditor dynamissa_editor(0, 0, 0.33 * width, height, dyn);
-    dynamissa_editor.dynamissa_editor();
+    dyn_editor->dynamissa_editor();
 
     renderer_class->dynamissa_renderer();
 
