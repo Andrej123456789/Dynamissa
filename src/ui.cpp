@@ -106,6 +106,8 @@ void DynamissaEditor::objects_ui()
 
 void DynamissaEditor::object_creation_ui()
 {
+    ImGui::PushItemWidth(ImGui::GetContentRegionAvail().x * 0.6f);
+
     ImGui::InputInt("X position", &dyn->temp_object.x);
     ImGui::InputInt("Y position", &dyn->temp_object.y);
     ImGui::InputInt("width", &dyn->temp_object.width);
@@ -118,6 +120,8 @@ void DynamissaEditor::object_creation_ui()
     {
         dyn->objects.push_back(dyn->temp_object);
     }
+
+    ImGui::PopItemWidth();
 }
 
 void DynamissaEditor::forces_ui()
@@ -127,8 +131,10 @@ void DynamissaEditor::forces_ui()
 
 void DynamissaEditor::simulation_ui()
 {
+    ImGui::PushItemWidth(ImGui::GetContentRegionAvail().x * 0.65f);
+
     double duration = dyn->simulation->duration.count();
-    if (ImGui::InputDouble("duration", &duration, 0.1))
+    if (ImGui::InputDouble("duration (s)", &duration, 0.1))
     {
         dyn->simulation->duration = std::chrono::duration<double>(duration);
     }
@@ -143,4 +149,6 @@ void DynamissaEditor::simulation_ui()
     {
         dyn->simulation->run = false;
     }
+
+    ImGui::PopItemWidth();
 }
