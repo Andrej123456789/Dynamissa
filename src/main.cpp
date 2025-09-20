@@ -7,6 +7,7 @@
 
 #include <array>
 #include <chrono>
+#include <filesystem>
 #include <iostream>
 
 #include "../imgui/imgui.h"
@@ -70,6 +71,12 @@ int main(int argc, char* argv[])
     /* --------------------------------------------------------------------- */
     /*                      Dear ImGui initialization                        */
     /* --------------------------------------------------------------------- */
+
+    // Temporarily disable data from imgui.ini from previous session
+    if (std::filesystem::exists("imgui.ini"))
+    {
+        std::filesystem::remove("imgui.ini");
+    }
 
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
