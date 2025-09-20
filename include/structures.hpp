@@ -11,6 +11,17 @@
 #include <chrono>
 #include <vector>
 
+/**
+ * @brief Structure containing force information
+ * @param angle vector's orientation in degrees, measured clockwise
+ * @param magnitude
+ */
+struct Force
+{
+    int angle;
+    double magnitude;
+};
+
  /**
   * @brief Structure containing object information
   *
